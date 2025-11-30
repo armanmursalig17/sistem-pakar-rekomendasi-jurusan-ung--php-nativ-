@@ -83,8 +83,17 @@ Tunggu hingga muncul pesan "Selesai! Database pakar_ung siap digunakan."
 Setelah database terisi, kembali ke halaman utama: http://localhost/pakar-ung/
 
 Klik tombol "Mulai Konsultasi" untuk mencoba sistem.
-```  
 
+Untuk login pakar gunakan username = admin & password = password123
+```
+
+## 🤝 Kontribusi & Pengembangan
+```
+Project ini bersifat open-source dan terbuka untuk siapa saja yang ingin mempelajari, menggunakan, atau mengembangkannya lebih lanjut.
+Silakan melakukan fork, modifikasi, dan pull request jika Anda ingin menambahkan fitur, memperbaiki bug, atau meningkatkan performa sistem.
+
+Saya sangat menghargai setiap bentuk kontribusi demi membuat aplikasi ini semakin bermanfaat bagi calon mahasiswa UNG dan pengguna lainnya.
+```
 ## 📷 Screenshots
 Dokumentasi
  
