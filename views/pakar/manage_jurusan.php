@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_jurusan'])) {
     $kode = $conn->real_escape_string($_POST['kode_jurusan']);
     $nama = $conn->real_escape_string($_POST['nama_jurusan']);
     $jenjang = $conn->real_escape_string($_POST['jenjang']);
-    
+
 
     $check = $conn->query("SELECT kode_jurusan FROM jurusan WHERE kode_jurusan = '$kode'");
     if ($check->num_rows > 0) {
@@ -28,8 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_jurusan'])) {
 
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     $kode_delete = $conn->real_escape_string($_GET['delete']);
-    
-    
+
+
     $sql_delete = "DELETE FROM jurusan WHERE kode_jurusan = '$kode_delete'";
     if ($conn->query($sql_delete)) {
         $message = "Jurusan dengan kode **$kode_delete** berhasil dihapus, termasuk semua aturan yang terkait.";
@@ -45,6 +45,7 @@ $jurusan_res = $conn->query("SELECT * FROM jurusan ORDER BY jenjang DESC, nama_j
 ?>
 <!doctype html>
 <html lang="id">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -52,9 +53,16 @@ $jurusan_res = $conn->query("SELECT * FROM jurusan ORDER BY jenjang DESC, nama_j
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
-<body>
-    <?php include '../partials/navbar.php'; ?>
 
+<body>
+    <nav id="navbar-utama" class="navbar navbar-dark fixed-top flex-md-nowrap p-0 shadow" style="background-color: #800000 !important; background-image: none !important; opacity: 1 !important;">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Dashboard Pakar</a>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="logout.php">Sign out (<?= $_SESSION['pakar_username'] ?>)</a>
+            </li>
+        </ul>
+    </nav>
     <div class="container-fluid">
         <div class="row">
             <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -107,7 +115,12 @@ $jurusan_res = $conn->query("SELECT * FROM jurusan ORDER BY jenjang DESC, nama_j
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-sm">
                         <thead class="thead-dark">
-                            <tr><th>Kode</th><th>Nama Jurusan</th><th>Jenjang</th><th>Aksi</th></tr>
+                            <tr>
+                                <th>Kode</th>
+                                <th>Nama Jurusan</th>
+                                <th>Jenjang</th>
+                                <th>Aksi</th>
+                            </tr>
                         </thead>
                         <tbody>
                             <?php while ($j = $jurusan_res->fetch_assoc()): ?>
@@ -129,4 +142,5 @@ $jurusan_res = $conn->query("SELECT * FROM jurusan ORDER BY jenjang DESC, nama_j
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

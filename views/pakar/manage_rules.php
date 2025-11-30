@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_rule'])) {
     $kode_fakta = $conn->real_escape_string($_POST['kode_fakta_rule']);
     $bobot = (float)$_POST['bobot'];
 
-   
+
     $check = $conn->query("SELECT id_aturan FROM aturan WHERE kode_jurusan = '$kode_jurusan' AND kode_fakta = '$kode_fakta'");
     if ($check->num_rows > 0) {
         $error = "Aturan ini (Jurusan $kode_jurusan dengan Fakta $kode_fakta) sudah ada.";
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_rule'])) {
 
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
     $id_delete = (int)$_GET['delete'];
-    
+
     $sql_delete = "DELETE FROM aturan WHERE id_aturan = $id_delete";
     if ($conn->query($sql_delete)) {
         header("Location: manage_rules.php");
@@ -54,7 +54,7 @@ $sql_rules = "SELECT a.id_aturan, a.bobot, j.nama_jurusan, j.kode_jurusan, j.jen
 
 if (isset($_GET['q']) && !empty($_GET['q'])) {
     $q = $conn->real_escape_string($_GET['q']);
-  
+
     $sql_rules .= " WHERE j.nama_jurusan LIKE '%$q%' OR j.kode_jurusan LIKE '%$q%'";
     $search_query = htmlspecialchars($_GET['q']);
 }
@@ -73,26 +73,48 @@ if ($rules_res->num_rows > 0) {
 ?>
 <!doctype html>
 <html lang="id">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Manajemen Aturan & Rule</title>
-    
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    
+
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
-    
+
     <link rel="stylesheet" href="../../assets/css/style.css">
     <style>
-        .table-valign-middle td { vertical-align: middle !important; }
-        .merged-cell { background-color: #ffffff; font-weight: bold; color: #2c3e50; }
-        .select2-container .select2-selection--single { height: 38px !important; }
-        .select2-container--bootstrap4 .select2-selection--single .select2-selection__rendered { line-height: 36px !important; }
+        .table-valign-middle td {
+            vertical-align: middle !important;
+        }
+
+        .merged-cell {
+            background-color: #ffffff;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .select2-container .select2-selection--single {
+            height: 38px !important;
+        }
+
+        .select2-container--bootstrap4 .select2-selection--single .select2-selection__rendered {
+            line-height: 36px !important;
+        }
     </style>
 </head>
+
 <body>
-    <?php include '../partials/navbar.php'; ?>
+    <nav id="navbar-utama" class="navbar navbar-dark fixed-top flex-md-nowrap p-0 shadow" style="background-color: #800000 !important; background-image: none !important; opacity: 1 !important;">
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Dashboard Pakar</a>
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="logout.php">Sign out (<?= $_SESSION['pakar_username'] ?>)</a>
+            </li>
+        </ul>
+    </nav>
 
     <div class="container-fluid">
         <div class="row">
@@ -164,7 +186,7 @@ if ($rules_res->num_rows > 0) {
                                 <input type="text" class="form-control" name="q" placeholder="Cari Nama Jurusan atau Kode..." value="<?= $search_query ?>">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">Cari</button>
-                                    <?php if($search_query): ?>
+                                    <?php if ($search_query): ?>
                                         <a href="manage_rules.php" class="btn btn-secondary">Reset</a>
                                     <?php endif; ?>
                                 </div>
@@ -177,7 +199,7 @@ if ($rules_res->num_rows > 0) {
                     <table class="table table-bordered table-striped table-sm table-valign-middle">
                         <thead class="thead-dark">
                             <tr>
-                                <th style="width: 25%;">Jurusan (Goal)</th> 
+                                <th style="width: 25%;">Jurusan (Goal)</th>
                                 <th style="width: 45%;">Fakta (Condition)</th>
                                 <th style="width: 10%;">Bobot</th>
                                 <th style="width: 10%;">Aksi</th>
@@ -187,7 +209,7 @@ if ($rules_res->num_rows > 0) {
                             <?php if (empty($grouped_rules)): ?>
                                 <tr>
                                     <td colspan="4" class="text-center py-3">
-                                        <?= $search_query ? 'Data tidak ditemukan untuk pencarian: "<b>'.$search_query.'</b>"' : 'Belum ada aturan data yang tersimpan.' ?>
+                                        <?= $search_query ? 'Data tidak ditemukan untuk pencarian: "<b>' . $search_query . '</b>"' : 'Belum ada aturan data yang tersimpan.' ?>
                                     </td>
                                 </tr>
                             <?php else: ?>
@@ -202,17 +224,17 @@ if ($rules_res->num_rows > 0) {
                                                     <small class="text-muted">(<?= $rule['kode_jurusan'] ?>)</small>
                                                 </td>
                                             <?php endif; ?>
-                                            
+
                                             <td>
-                                                <span class="badge badge-info"><?= $rule['kode_fakta'] ?></span> 
+                                                <span class="badge badge-info"><?= $rule['kode_fakta'] ?></span>
                                                 <?= htmlspecialchars($rule['deskripsi_fakta']) ?>
                                             </td>
                                             <td class="text-center"><?= $rule['bobot'] ?></td>
                                             <td class="text-center">
-                                                <a href="manage_rules.php?delete=<?= $rule['id_aturan'] ?>" 
-                                                   class="btn btn-sm btn-danger" 
-                                                   onclick="return confirm('Yakin ingin menghapus aturan fakta ini?');">
-                                                   Hapus
+                                                <a href="manage_rules.php?delete=<?= $rule['id_aturan'] ?>"
+                                                    class="btn btn-sm btn-danger"
+                                                    onclick="return confirm('Yakin ingin menghapus aturan fakta ini?');">
+                                                    Hapus
                                                 </a>
                                             </td>
                                         </tr>
@@ -225,15 +247,15 @@ if ($rules_res->num_rows > 0) {
             </main>
         </div>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    
+
     <script>
         $(document).ready(function() {
-         
+
             $('.select2').select2({
                 theme: 'bootstrap4',
                 width: '100%',
@@ -243,4 +265,5 @@ if ($rules_res->num_rows > 0) {
         });
     </script>
 </body>
+
 </html>

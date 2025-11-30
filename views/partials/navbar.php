@@ -25,12 +25,12 @@ $is_logged_in = isset($_SESSION['pakar_logged_in']) && $_SESSION['pakar_logged_i
 $username = isset($_SESSION['pakar_username']) ? $_SESSION['pakar_username'] : 'Pakar';
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-[#5c0303ff] fixed-top shadow">
+<nav class="navbar navbar-expand-lg navbar-dark  fixed-top shadow">
     <div class="container">
         <a class="navbar-brand" href="<?= $home_link ?>">
             <img src="<?= $in_pakar_folder ? '../../assets/img/logo.png' : 'assets/img/logo.png' ?>"
                 alt="Logo UNG"
-                style="height: 35px; width: auto; margin-right: 8px;">Sistem Pakar UNG</a>
+                style="height: 35px; width: auto; margin-right: 8px;">Sistem Rekomendasi Jurusan UNG</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

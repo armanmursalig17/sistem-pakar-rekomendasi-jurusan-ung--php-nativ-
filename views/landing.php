@@ -128,7 +128,7 @@ include_once 'partials/navbar.php';
                         </div>
 
                         <h1 class="display-4 text-white mb-3 hero-title" data-aos="fade-up" data-aos-delay="200">
-                            Sistem Pakar Penjurusan UNG
+                            Sistem Konsultasi Penjurusan UNG
                         </h1>
                         
                         <p class="lead text-white mb-5" data-aos="fade-up" data-aos-delay="400">
