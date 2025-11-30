@@ -24,13 +24,15 @@ Project ini disusun dengan struktur yang bersih:
 ├── database/        # Script SQL dan Seeding data (seed.php)
 ├── views/           # Tampilan antarmuka (Frontend)
 ├── index.php        # Entry point (Routing sederhana)
-└── README.md        # Dokumentasi
+└── README.md        # Dokumentasi.
+```  
 
 
 
 
+## 🛠️ Prasyarat (Requirements)
 
-🛠️ Prasyarat (Requirements)
+```  
 Sebelum menjalankan aplikasi, pastikan komputer Anda memiliki:
 
 Web Server Local: XAMPP, Laragon, atau MAMP.
@@ -41,9 +43,12 @@ Database: MySQL/MariaDB.
 
 Browser: Chrome, Firefox, atau Edge terbaru.
 
-🚀 Cara Instalasi & Menjalankan
+```  
+
+## 🚀 Cara Instalasi & Menjalankan
 Ikuti langkah-langkah berikut untuk menjalankan project ini di komputer lokal:
 
+```  
 1. Clone Repository
 Buka terminal atau Git Bash, lalu clone repository ini ke folder htdocs (XAMPP) atau www (Laragon):
 
@@ -78,13 +83,17 @@ Tunggu hingga muncul pesan "Selesai! Database pakar_ung siap digunakan."
 Setelah database terisi, kembali ke halaman utama: http://localhost/pakar-ung/
 
 Klik tombol "Mulai Konsultasi" untuk mencoba sistem.
+```  
 
-📷 Screenshots
+## 📷 Screenshots
+Dokumentasi
+```  
 ![alt text](image.png)
 
 
+```  
 
-👤 Author
+## 👤 Author
 Arman Mursali - Developer - GitHub Profile
 
 Dibuat dengan ❤️ untuk Mahasiswa UNG.
