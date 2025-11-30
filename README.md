@@ -98,6 +98,7 @@ Saya sangat menghargai setiap bentuk kontribusi demi membuat aplikasi ini semaki
 Dokumentasi
  
 ![alt text](image.png)
+![alt text](image1.png)
 
  
 
